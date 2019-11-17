@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <title>Tubes IoTxMicro</title>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <img src="img/Telnet.png" width="30px" height="35px">
+    <a class="navbar-brand" href="index.html"> IoTxMicro</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home<span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Controlling
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Controlling.html">RGB LED</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Monitoring
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="Monitoring.html">gempa</a>
+            <a class="dropdown-item" href="graph.html">Graph</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Type here .." aria-label="Search">
+        <button class="btn btn-outline-primary bg-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+</head>
+
+<body>
+
+  <br>
+  <br>
+  <br>
+
+  <!--Monitoring-->
+  <section class="monitoring" id="Monitoring">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="text-center">Puntenn ada Gempaa</h2>
+          <hr>
+        </div>
+      </div>
+    </div> 
+
+    <div class="row">
+     <div class="col-sm-6">
+       <img src="earthquake.png" class="img-responsive center-block" align="center">
+     </div>
+     <div class="col-sm-6">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card text-center">
+            <div class="card-body">
+              <h1 class="card-title bg-primary">Kekuatan</h1>
+              <h2 id="gempa" class="card-text">SR</h2>
+            </div>
+          </div>  
+        </div>
+      </div>  
+      
+    </div>
+
+  </div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAeoXf0vL_oDVltnnx-5vMRby15uGmakNU",
+    authDomain: "tubes-iotxmicro.firebaseapp.com",
+    databaseURL: "https://tubes-iotxmicro.firebaseio.com",
+    projectId: "tubes-iotxmicro",
+    storageBucket: "tubes-iotxmicro.appspot.com",
+    messagingSenderId: "487568010242",
+    appId: "1:487568010242:web:b9e69d9e84681208670b1b",
+    measurementId: "G-VQ423710TR"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+
+  const fbase = firebase.database().ref("Monitoring/gempa");
+  fbase.on("value",snap=>{
+    document.getElementById("gempa").innerText = snap.val();
+  })
+</script>
+
+</section>
+</body>
+</html>
